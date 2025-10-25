@@ -1,0 +1,29 @@
+{
+  "name": "university-backend-dev-project",
+  "version": "1.0.0",
+  "description": "Trabalho Acadêmico: Desenvolvido para a disciplina de Programação BackEnd da UNIVILLE.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josevesidio/university-backend-dev-project.git"
+  },
+  "keywords": [],
+  "author": "José Victor Esidio, Felipe Miguel Camargo Schutzler, Diego Hélio da Silva, Mirian Cristina Correa, André Rafael Aleksi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josevesidio/university-backend-dev-project/issues"
+  },
+  "homepage": "https://github.com/josevesidio/university-backend-dev-project#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mysql2": "^3.15.3",
+    "nodemon": "^3.1.10"
+  }
+}
