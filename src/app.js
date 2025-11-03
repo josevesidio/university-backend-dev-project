@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import { json } from 'express';
 import cors from 'cors';
-import { connectDB } from './config/database.js';
+import sequelize, { ensureDatabaseExists } from './config/database.js';
 import routes from './routes/index.js';
 
 const PORT = process.env.PORT || 3000;
@@ -10,7 +10,11 @@ const API_PREFIX = '/api';
 
 const app = express();
 
-connectDB();
+await ensureDatabaseExists();
+
+await sequelize.authenticate();
+
+await sequelize.sync(); 
 
 app.use(cors());
 
