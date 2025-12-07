@@ -4,7 +4,7 @@ import 'dotenv/config';
 
 const dbName = process.env.DB_NAME || 'university_backend_db';
 const dbUser = process.env.DB_USER || 'root';
-const dbPassword = process.env.DB_PASSWORD || 'password';
+const dbPassword = process.env.DB_PASSWORD ?? '';
 const dbHost = process.env.DB_HOST || 'localhost';
 const dbPort = process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 3306;
 

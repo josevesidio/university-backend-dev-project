@@ -4,6 +4,7 @@ import { json } from 'express';
 import cors from 'cors';
 import sequelize, { ensureDatabaseExists } from './config/database.js';
 import routes from './routes/index.js';
+import './model/product.js';
 
 const PORT = process.env.PORT || 3000;
 const API_PREFIX = '/api';
