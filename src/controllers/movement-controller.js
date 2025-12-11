@@ -57,7 +57,7 @@ export const create = async (req, res) => {
     const movementWithDetails = await Movement.findByPk(movement.id, {
       include: [
         { model: Product, as: 'product', attributes: ['id', 'name'] },
-        { model: User, as: 'user', attributes: ['id', 'name', 'email'] },
+        { model: User, as: 'user', attributes: ['id', 'email'] },
       ],
     });
 
@@ -89,7 +89,7 @@ export const findAll = async (req, res) => {
       where,
       include: [
         { model: Product, as: 'product', attributes: ['id', 'name'] },
-        { model: User, as: 'user', attributes: ['id', 'name', 'email'] },
+        { model: User, as: 'user', attributes: ['id', 'email'] },
       ],
       order: [['createdAt', 'DESC']],
     });
@@ -113,7 +113,7 @@ export const findById = async (req, res) => {
     const movement = await Movement.findByPk(id, {
       include: [
         { model: Product, as: 'product' },
-        { model: User, as: 'user', attributes: ['id', 'name', 'email'] },
+        { model: User, as: 'user', attributes: ['id', 'email'] },
       ],
     });
 
@@ -146,7 +146,7 @@ export const findByProduct = async (req, res) => {
     const movements = await Movement.findAll({
       where: { productId },
       include: [
-        { model: User, as: 'user', attributes: ['id', 'name', 'email'] },
+        { model: User, as: 'user', attributes: ['id', 'email'] },
       ],
       order: [['createdAt', 'DESC']],
     });
