@@ -12,7 +12,9 @@ npm start
 ## Testes
 
 ```bash
-npm test
+npm test              # roda todos os testes
+npm run test:watch    # roda os testes e fica observando mudanças
+npm run test:coverage # roda os testes e mostra a cobertura
 ```
 
 ## Rotas
