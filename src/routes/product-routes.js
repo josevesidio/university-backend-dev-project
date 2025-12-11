@@ -1,8 +1,12 @@
 import { Router } from 'express';
 import { create, findAll, findById, update, remove } from '../controllers/product-controller.js';
 import { createRules, updateRules } from '../validators/product-validator.js';
+import { authMiddleware } from '../middleware/auth.js';
 
 const router = Router();
+
+// Todas as rotas de movimentação requerem autenticação
+router.use(authMiddleware);
 
 /**
  * POST /api/products
