@@ -1,4 +1,5 @@
 import { body } from 'express-validator';
+import Product from '../model/product.js';
 
 export const createRules = [
   body('name')
@@ -7,7 +8,13 @@ export const createRules = [
     .bail()
     .isLength({ min: 2, max: 255 })
     .withMessage('O nome deve ter entre 2 e 255 caracteres.')
-    .trim(),
+    .trim()
+    .custom(async (value) => {
+      const product = await Product.findOne({ where: { name: value } });
+      if (product) {
+        return Promise.reject('Já existe um produto com este nome.');
+      }
+    }),
   body('description')
     .optional()
     .isLength({ max: 1000 })
