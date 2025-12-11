@@ -23,10 +23,11 @@ export const register = async (req, res) => {
     const newUser = await User.create({
       email,
       password,
+      is_email_verified: true,
     });
 
     res.status(201).json({
-      message: 'Usuário registrado com sucesso! Verifique seu e-mail.',
+      message: 'Usuário registrado com sucesso!',
       userId: newUser.id,
     });
 
