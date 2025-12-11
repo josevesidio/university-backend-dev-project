@@ -33,11 +33,32 @@ export const createRules = [
 ];
 
 export const updateRules = [
+  body().custom((value) => {
+    const bodyData = value || {}; 
+
+    if (typeof bodyData !== 'object') {
+       throw new Error('O corpo da requisição deve ser um objeto JSON válido.');
+    }
+
+    const allowedFields = ['name', 'description', 'price', 'quantity'];
+    const hasAtLeastOneField = allowedFields.some(field => field in bodyData);
+    if (!hasAtLeastOneField) {
+      throw new Error('Você deve informar pelo menos um campo para atualização (name, description, price ou quantity).');
+    }
+    
+    return true;
+  }),
   body('name')
     .optional()
     .isLength({ min: 2, max: 255 })
     .withMessage('O nome deve ter entre 2 e 255 caracteres.')
-    .trim(),
+    .trim()
+    .custom(async (value) => {
+      const product = await Product.findOne({ where: { name: value } });
+      if (product) {
+        return Promise.reject('Já existe um produto com este nome.');
+      }
+    }),,
   body('description')
     .optional()
     .isLength({ max: 1000 })
